@@ -1,0 +1,117 @@
+{% load static from staticfiles %}
+<!-- <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header has-drawer is-upgraded" data-upgraded=",MaterialLayout"> -->
+<!-- Always shows a header, even in smaller screens. -->
+<header class="mdl-layout__header">
+   <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span class="mdl-layout-title"><a href="/">Galli Foods</a></span>
+      <!-- Add spacer, to align navigation to the right -->
+      <div class="mdl-layout-spacer"></div>
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+         mdl-textfield--floating-label mdl-textfield--align-right">
+         <label class="mdl-button mdl-js-button mdl-button--icon"
+            for="waterfall-exp">
+         <i class="material-icons">search</i>
+         </label>
+         <div class="mdl-textfield__expandable-holder">
+            <input class="mdl-textfield__input" type="search" name="search"
+               id="waterfall-exp">
+         </div>
+      </div>
+      <!-- Navigation. We hide it in small screens. -->
+      <nav class="mdl-navigation mdl-layout--large-screen-only">
+         {% if user.is_authenticated %}
+            <a class="mdl-navigation__link" href="{% url 'articles:create' %}">Create Article</a>
+            <a class="mdl-navigation__link" href="{% url 'accounts:dashboard' %}">Dashboard</a>
+            <!--<a class="mdl-navigation__link" href="javascript:void(0);">{{ user.get_username }}</a>-->
+            <img src="{% static 'images/user.jpg' %}" class="nav-avatar">
+          <div class="nav-avatar-dropdown">
+            <span>{{ user.get_username }}</span>
+            <div class="mdl-layout-spacer"></div>
+            <button id="nav_dropdown" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+              <i class="material-icons" role="presentation">arrow_drop_down</i>
+              <span class="visuallyhidden">Accounts</span>
+            </button>
+            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="nav_dropdown">
+              <li class="mdl-menu__item">
+
+                 <span onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</span>
+                     <form role="form" method="post" id="logout-form" class="logout-link" action="{% url 'accounts:logout' %}">
+                        {% csrf_token %}
+
+                     </form>
+              </li>
+            </ul>
+          </div>
+         {% else %}
+            <a class="mdl-navigation__link" href="{% url 'accounts:login' %}">Login</a>
+            <a class="mdl-navigation__link" href="{% url 'accounts:signup' %}">Signup</a>
+         {% endif %}
+         <!--<a class="mdl-navigation__link" href="">Link</a>-->
+      </nav>
+   </div>
+</header>
+
+<div class="mdl-layout__drawer">
+   <span class="mdl-layout-title">Galli Foods</span>
+
+   <nav class="mdl-navigation">
+       <a class="mdl-navigation__link" href="">About</a>
+       <a class="mdl-navigation__link" href="">Contact</a>
+      {% if user.is_authenticated %}
+      <a class="mdl-navigation__link" href="{% url 'articles:create' %}">Create Article</a>
+
+      <a class="mdl-navigation__link" href="">
+         <form role="form" method="post" class="logout-link" action="{% url 'accounts:logout' %}">
+            {% csrf_token %}
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+               <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">
+               Logout
+               </button>
+            </div>
+         </form>
+      </a>
+      {% else %}
+      <a class="mdl-navigation__link" href="{% url 'accounts:login' %}">Login</a>
+      <a class="mdl-navigation__link"href="{% url 'accounts:signup' %}">Signup</a>
+      {% endif %}
+
+   </nav>
+</div>
+<!-- </div> -->
+<!--<header>-->
+<!--<nav class="navbar navbar-expand-lg navbar-light bg-light">-->
+<!--<a class="navbar-brand" href="/"> <img class="logo" src="http://bootstrap-ecommerce.com/main/images/logo-white.png" height="40"> LOGO</a>-->
+<!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--<span class="navbar-toggler-icon"></span>-->
+<!--</button>-->
+<!--<div class="collapse navbar-collapse" id="navbar1">-->
+<!--<ul class="navbar-nav ml-auto">-->
+<!--<li class="nav-item active">-->
+<!--<a class="nav-link" href="/"> Home <span class="sr-only">(current)</span></a>-->
+<!--</li>-->
+<!--{% if user.is_authenticated %}-->
+<!--<li class="nav-item"><a class="nav-link" href="{% url 'articles:create' %}">Create Article</a></li>-->
+<!--<li class="nav-item dropdown">-->
+<!--<a class="nav-link  dropdown-toggle" href="#" data-toggle="dropdown">{{ user.get_username }}</a>-->
+<!--<ul class="dropdown-menu">-->
+<!--<li class="nav-item">-->
+<!--<form role="form" method="post" class="logout-link" action="{% url 'accounts:logout' %}">-->
+<!--{% csrf_token %}-->
+<!--<button class="" type="submit">Logout</button>-->
+<!--</form>-->
+<!--</li>-->
+<!--</ul>-->
+<!--</li>-->
+<!--{% else %}-->
+<!--<li class="nav-item"><a class="nav-link" href="{% url 'accounts:login' %}">Login</a></li>-->
+<!--<li class="nav-item"><a class="nav-link" href="{% url 'accounts:signup' %}">Signup</a></li>-->
+<!--{% endif %}-->
+<!--&lt;!&ndash;<li class="nav-item"><a class="nav-link" href="html-components.html"> Documentation </a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;<li class="nav-item">&ndash;&gt;-->
+<!--&lt;!&ndash;<a class="btn ml-2 btn-warning" href="http://bootstrap-ecommerce.com">Download</a>&ndash;&gt;-->
+<!--&lt;!&ndash;</li>&ndash;&gt;-->
+<!--</ul>-->
+<!--</div>-->
+<!--</nav>-->
+<!--</header>-->

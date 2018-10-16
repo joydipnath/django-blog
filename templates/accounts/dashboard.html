@@ -1,0 +1,33 @@
+{% extends 'main_layout.html' %}
+
+{% block title %}
+Dashboard
+
+{% endblock %}
+
+
+
+{% block before_main %}
+
+{% endblock %}
+
+{% block content %}
+	<div class="mdl-grid ">
+        <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone dashboard_tabs">
+ 			<a class="mdl-navigation__link" href="/"><i class=" material-icons orange600" role="presentation">home</i>Home</a>
+ 			<a class="mdl-navigation__link" href="javascript:void(0);"><i class=" material-icons orange600" role="presentation">face</i>My Profile</a>
+          	<a class="mdl-navigation__link" href="javascript:void(0);"><i class=" material-icons" role="presentation">inbox</i>Inbox</a>
+          	<a class="mdl-navigation__link" href="javascript:void(0);"><i class=" material-icons" role="presentation">delete</i>Trash</a>
+          	<a class="mdl-navigation__link" href="javascript:void(0);"><i class=" material-icons" role="presentation">report</i>Spam</a>
+          	<a class="mdl-navigation__link" href="javascript:void(0);"><i class=" material-icons" role="presentation">forum</i>Forums</a>
+          	<a class="mdl-navigation__link" href="javascript:void(0);"><i class=" material-icons" role="presentation">flag</i>Updates</a>
+          	<a class="mdl-navigation__link" href="javascript:void(0);"><i class=" material-icons" role="presentation">local_offer</i>Promos</a>
+        </div>
+        <div class="mdl-card mdl-shadow--3dp mdl-cell mdl-cell--10-col mdl-cell--hide-tablet mdl-cell--hide-phone ">
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block before_body %}
+{% endblock %}

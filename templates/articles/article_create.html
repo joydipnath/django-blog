@@ -1,0 +1,63 @@
+{% extends 'main_layout.html' %}
+{% block title %}
+Create Your Article
+{% endblock %}
+{% block content %}
+
+<!--<form class="site-form" name="" method="post" action="{% url 'articles:create' %}" enctype="multipart/form-data">-->
+<!--{% csrf_token %}-->
+<!--{{ form }}-->
+<!--<button type="submit">create</button>-->
+<!--</form>-->
+<!-- <main class="mdl-layout__content "> -->
+   <div class="mdl-grid create_article_page">
+      <div class="mdl-cell mdl-cell--3-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+      <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-cell--12-col-phone">
+
+          <div class="demo-card-event mdl-card mdl-shadow--2dp">
+              <!--<div class="mdl-card">-->
+              <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">Create an Article</h2>
+              </div>
+         <!--<div class="mdl-cell mdl-cell&#45;&#45;4-col mdl-cell&#45;&#45;6-col-tablet">4 (6 tablet)</div>-->
+         <!--<div class="mdl-cell mdl-cell&#45;&#45;2-col mdl-cell&#45;&#45;4-col-phone">2 (4 phone)</div>-->
+         <form class="site-form create_article_form" id="create_article_form" name="" method="post" action="{% url 'articles:create' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+               <input class="mdl-textfield__input" type="text" name="title" required="" id="id_title" maxlength="100">
+               <label class="mdl-textfield__label" for="id_title">Title...</label>
+            </div>
+            <!--<div class="mdl-textfield mdl-js-textfield mdl-textfield&#45;&#45;floating-label">-->
+            <!--<input class="mdl-textfield__input" type="text" name="title" id="id_title" required>-->
+            <!--<label class="mdl-textfield__label" for="id_title">Text...</label>-->
+            <!--</div>-->
+            <div class="mdl-textfield mdl-js-textfield">
+               <textarea class="mdl-textfield__input" type="text" name="body" id="id_body" rows="3" required=""></textarea>
+               <label class="mdl-textfield__label" for="id_body">Text lines...</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+               <input class="mdl-textfield__input" type="text" name="slug" required="" id="id_slug" maxlength="50">
+               <label class="mdl-textfield__label" for="id_slug">Slug</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+               <input class="mdl-textfield__input" type="file" name="thumb" id="id_thumb">
+               <!--<label class="mdl-textfield__label" for="id_thumb">Slug</label>-->
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+               <input class="mdl-textfield__input" type="text" name="key_words" required="" id="id_key_words" maxlength="100">
+               <label class="mdl-textfield__label" for="id_key_words">Key Words</label>
+            </div>
+            <!--<button type="submit">create</button>-->
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+               <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">
+               Create
+               </button>
+            </div>
+         </form>
+          </div>
+      </div>
+   </div>
+<!-- </main> -->
+{% endblock %}
+{% block before_body %}
+{% endblock %}
