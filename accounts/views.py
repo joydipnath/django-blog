@@ -1,4 +1,5 @@
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.http import HttpResponse
 
 # Create your views here.
 from django.shortcuts import render, get_object_or_404, redirect
@@ -10,22 +11,24 @@ from django.http import HttpResponseRedirect
 from django.db import transaction
 from .models import Profile
 from .forms import UserForm,ProfileForm
+from articles.models import Article
 
-
+# get signup/registration form 
 def signup_view(request):
 
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)
+            # login(request, user)
+            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             return redirect('articles:list')
     else:
         form = UserCreationForm()
 
-    return render(request, 'accounts/signup.html', {'form': form})
+    return render(request, 'accounts/signup.html', { 'form': form })
 
-
+# Get the login view
 def login_view(request):
 
     if request.method == 'POST':
@@ -39,17 +42,30 @@ def login_view(request):
                 return redirect('articles:list')
     else:
         form = AuthenticationForm()
-    return render(request, 'accounts/login.html', {'form': form})
+    return render(request, 'accounts/login.html', { 'form': form })
 
-
+# Logout the user from app
 def logout_view(request):
     if request.method == 'POST':
         logout(request)
         return redirect('articles:list')
 
-# @login_required
+
+# Show dashboard
+@login_required(login_url="/accounts/login/")
 def dashboard(request):
-    return render(request, 'accounts/dashboard.html')
+    user_id = request.user.id
+
+    user_form = UserForm(instance=request.user)
+    # return HttpResponse(user_id)
+    # articles = Article.objects.all().order_by('date') 
+    # articles =  Article.objects.get(author=user_id)
+
+    articles = Article.objects.filter(author=user_id).values()
+
+    # return HttpResponse(articles)
+
+    return render(request, 'accounts/dashboard.html', { 'articles': articles, 'user_form': user_form })
 
 
 @login_required
@@ -68,7 +84,7 @@ def update_profile(request):
     else:
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.profile)
-    return render(request, 'home/profile.html', {
+    return render(request, 'accounts/dashboard.html', {
         'user_form': user_form,
         'profile_form': profile_form
     })
