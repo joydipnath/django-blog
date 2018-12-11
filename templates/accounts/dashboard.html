@@ -1,8 +1,9 @@
 {% extends 'main_layout.html' %}
 
-{% block title %}
-Dashboard
+{% load static from staticfiles %}
 
+{% block title %}
+	Dashboard1
 {% endblock %}
 
 
@@ -32,10 +33,12 @@ Dashboard
 {% endblock %}
 
 {% block content %}
-	<div class="mdl-grid ">
+
+	<div class="mdl-grid" id="dashboard_contant">
         <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone dashboard_tabs">
  			<a class="mdl-navigation__link" href="/"><i class=" material-icons orange600" role="presentation">home</i>Home</a>
- 			<a class="mdl-navigation__link" href="javascript:void(0);"><i class=" material-icons orange600 my_profile" role="presentation">face</i>My Profile</a>
+ 			<a class="mdl-navigation__link" id="my_profile" href="javascript:void(0);" v-on:click="show_dashboard_contant"><i class=" material-icons orange600" role="presentation">face</i>My Profile</a>
+ 			<a class="mdl-navigation__link" id="my_articles" href="javascript:void(0);" v-on:click="show_dashboard_contant"><i class=" material-icons" role="presentation">face</i>My Articles</a>
           	<a class="mdl-navigation__link" href="javascript:void(0);"><i class=" material-icons" role="presentation">inbox</i>Inbox</a>
           	<a class="mdl-navigation__link" href="javascript:void(0);"><i class=" material-icons" role="presentation">delete</i>Trash</a>
           	<a class="mdl-navigation__link" href="javascript:void(0);"><i class=" material-icons" role="presentation">report</i>Spam</a>
@@ -50,45 +53,56 @@ Dashboard
         	<div class="mdl-cell--1-col">
         	</div>
         	<div class=" mdl-cell--10-col">
-        	<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp" style="width: 100%;">
-			  <thead>
-			    <tr>
-			      <th class="mdl-data-table__cell--non-numeric">Title</th>
-			      <th>Slug</th>
-			      <th>Posted On</th>
-			    </tr>
-			  </thead>
-			  <tbody>
-			  	{% for article in articles %}
-				  	<tr>
-				      <td class="mdl-data-table__cell--non-numeric">{{article.title}}</td>
-				      <td>{{article.slug}}</td>
-				      <td>{{article.date}}</td>
-				    </tr>
-        		{% endfor %}
-			  </tbody>
-			</table>
+
+        		<!-- view my articles -->
+        		<div id="show_my_articles">
+		        	<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp" style="width: 100%;">
+					  <thead>
+					    <tr>
+					      <th class="mdl-data-table__cell--non-numeric">Article Title</th>
+					      <th>Slug</th>
+					      <th>Posted On</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					  	{% for article in articles %}
+						  	<tr>
+						      <td class="mdl-data-table__cell--non-numeric"><a href="{% url 'articles:detail' slug=article.slug %}" target="_blank">{{article.title}}</a></td>
+						      <td>{{article.slug}}</td>
+						      <td>{{article.date}}</td>
+						    </tr>
+		        		{% endfor %}
+					  </tbody>
+					</table>
+				</div>
+
+
+
+				<!-- view mmy profile -->
+				<!-- <div id="show_my_profile">
+					{{ user_form }}
+
+					<div id="example-2">
+				  		`greet` is the name of a method defined below
+				  		<button v-on:click="greet">Greet</button>
+					</div>
+				</div> -->
+
 			</div>
         	<div class="mdl-cell--1-col"></div>
+
+        	<div id="app">
+				  {{ message }}
+				</div>
         	</div>
 
         	<!-- {{ profile_form }} -->
 
         </div>
-        
-        <!-- <div class="mdl-card mdl-shadow--3dp mdl-cell mdl-cell--10-col mdl-cell--hide-tablet mdl-cell--hide-phone background-color">
-        	<div class="mdl-grid " style="width: 100%;">
-        	<div class="mdl-cell--1-col">
-        	</div>
-        	<div class=" mdl-cell--10-col">
-        		{{ user_form }}
-			</div>
-        	<div class="mdl-cell--1-col"></div>
-        	</div>
-        </div> -->
 
     </div>
 {% endblock %}
 
 {% block before_body %}
+<script src="{% static 'js/app.js' %}"></script>
 {% endblock %}

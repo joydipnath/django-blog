@@ -32,6 +32,7 @@
             <i class="material-icons" role="presentation">arrow_back</i>
           </a>
         </div>
+
         <div class="detail_article__posts mdl-grid">
           <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col" >
             <div class="mdl-card__media mdl-color-text--grey-50" style="background-image:url({{ article.thumb.url}})">
@@ -40,7 +41,7 @@
             <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
               <div class="minilogo"></div>
               <div>
-                <strong>The Newist</strong>
+                <strong>{{article.author.first_name}} {{article.author.last_name}}</strong>
                 <span>{{article.date}}</span>
               </div>
               <div class="section-spacer"></div>

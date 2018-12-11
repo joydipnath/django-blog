@@ -9,13 +9,14 @@
       <div class="mdl-layout-spacer"></div>
       <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
          mdl-textfield--floating-label mdl-textfield--align-right">
-         <label class="mdl-button mdl-js-button mdl-button--icon"
-            for="waterfall-exp">
-         <i class="material-icons">search</i>
+         <label class="mdl-button mdl-js-button mdl-button--icon" for="waterfall-exp">
+            <i class="material-icons">search</i>
          </label>
          <div class="mdl-textfield__expandable-holder">
-            <input class="mdl-textfield__input" type="search" name="search"
-               id="waterfall-exp">
+            <form role="form" method="get" id="" class="" action="{% url 'articles:search_article' %}">
+                
+                <input class="mdl-textfield__input" type="search" name="search" id="waterfall-exp" placeholder="search">
+            </form>
          </div>
       </div>
       <!-- Navigation. We hide it in small screens. -->
@@ -38,7 +39,6 @@
                  <span onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</span>
                      <form role="form" method="post" id="logout-form" class="logout-link" action="{% url 'accounts:logout' %}">
                         {% csrf_token %}
-
                      </form>
               </li>
             </ul>
