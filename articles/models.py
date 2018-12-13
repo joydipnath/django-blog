@@ -13,6 +13,7 @@ class Article(models.Model):
     thumb = models.ImageField(default='default.png', blank=True)
     key_words = models.CharField(max_length=100)
     author = models.ForeignKey(User, default=None, on_delete=models.CASCADE, related_name='user')
+    up_vote = models.PositiveSmallIntegerField(null=True)
     # add in thumbnail
 
     def __str__(self):
@@ -29,8 +30,8 @@ class Comment(models.Model):
     author  = models.ForeignKey(User, default=None, on_delete=models.CASCADE)
     article = models.ForeignKey(Article, default=None, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add = True)
-    up_vote = models.PositiveSmallIntegerField()
-    down_vote = models.PositiveSmallIntegerField()
+    up_vote = models.PositiveSmallIntegerField(null=True)
+    down_vote = models.PositiveSmallIntegerField(null=True)
 
     def __str__(self):
         return self.comment
@@ -43,8 +44,8 @@ class ReplyOnComment(models.Model):
     date = models.DateTimeField(auto_now_add = True)
     author  = models.ForeignKey(User, default=None, on_delete=models.CASCADE)
     article = models.ForeignKey(Article, default=None, on_delete=models.CASCADE)
-    up_vote = models.PositiveSmallIntegerField()
-    down_vote = models.PositiveSmallIntegerField()
+    up_vote = models.PositiveSmallIntegerField(null=True)
+    down_vote = models.PositiveSmallIntegerField(null=True)
 
     def __str__(self):
         return self.reply

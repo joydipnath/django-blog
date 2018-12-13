@@ -8,6 +8,7 @@
       <meta http-equiv="content-type" content="text/html; charset=UTF-8">
       <meta name="robots" content="noindex, nofollow">
       <meta name="googlebot" content="noindex, nofollow">
+      <meta name="csrf_token" content="{% csrf_token %}">
       <title>
          {% block title %}
          {% endblock %}
@@ -57,7 +58,7 @@
          <!-- <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
          // <script src="{% static 'js/bootstrap.min.js' %}"></script> -->
          <script src="{% static 'js/material.min.js' %}"></script>
-         <script src="{% static 'js/vue.min.js' %}"></script>
+         <!-- // <script src="{% static 'js/vue.min.js' %}"></script> -->
          
          <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>-->
 

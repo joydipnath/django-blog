@@ -32,7 +32,6 @@
             <i class="material-icons" role="presentation">arrow_back</i>
           </a>
         </div>
-
         <div class="detail_article__posts mdl-grid">
           <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col" >
             <div class="mdl-card__media mdl-color-text--grey-50" style="background-image:url({{ article.thumb.url}})">
@@ -64,12 +63,14 @@
 
             </div>
             <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments">
-              <form>
+              <form class="site-form post_comments_form" id="post_comments_form" name="post_comments_form" method="post" action="{% url 'articles:post_comments' %}" >
+                {% csrf_token %}
+                <input type="hidden" name="article_id" value="{{article.id}}">
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                  <textarea rows=1 class="mdl-textfield__input" id="comment"></textarea>
+                  <textarea rows=2 class="mdl-textfield__input" id="comment" name="comment"></textarea>
                   <label for="comment" class="mdl-textfield__label">Join the discussion</label>
                 </div>
-                <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" type="submit">
                   <i class="material-icons" role="presentation">check</i><span class="visuallyhidden">add comment</span>
                 </button>
               </form>

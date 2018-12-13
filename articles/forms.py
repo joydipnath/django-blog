@@ -6,3 +6,8 @@ class CreateArticle(forms.ModelForm):
     class Meta:
         model = models.Article
         fields = [ 'title', 'body', 'slug', 'thumb', 'key_words' ]
+
+class PostComment(forms.ModelForm):
+	class Meta:
+		model = models.Comment
+		fields = [ 'comment', 'article' ]
