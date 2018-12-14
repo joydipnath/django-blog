@@ -16,10 +16,13 @@ def article_list(request):
 def article_detail(request, slug):
     
     article = Article.objects.get(slug=slug)
+
+    comments = Comment.objects.filter(article= article.id).select_related() 
+    # return HttpResponse(comment)
     # [:1]
     # return article.author_set.all()
     # return HttpResponse(article.author_set.all())
-    return render(request, 'articles/article_detail.html', {'article': article})
+    return render(request, 'articles/article_detail.html', {'article': article, 'comments' : comments})
 
 
 @login_required(login_url="/accounts/login/")
@@ -54,21 +57,21 @@ def article_post_comments(request):
 
    
     if request.method == 'POST':
-        # form = forms.PostComment(request.POST)
-        comments = request.POST.get("comment") 
-        author_id = request.user.id
-        article_id = request.POST.get("article_id")
-        b = Comment.objects.create(comment=request.POST.get("comment"), article_id=request.POST.get("article_id"), author_id = request.user.id)
-        # b = Comment.objects.create(comment=comments, article_id = article_id, author_id = author_id)
-        b.save()
-        # if form.is_valid():
-        #     # save to data db
-        #     instance = form.save(commit=False)
-        #     instance.author = request.user
-        #     instance.article = request.POST.get("article_id")
-        #     instance.save()
-        #     # return HttpResponse(request.POST.get("article_id"))
-        #     return redirect('articles:list')
+
+        form = forms.PostComment(request.POST)
+
+        # return HttpResponse(form.is_valid())
+        # return HttpResponse(request.user)
+        
+        if form.is_valid():
+            b = Comment.objects.create(comment=request.POST.get("comment"), article_id=request.POST.get("article_id"), author_id = request.user.id)
+            b.save()
+            # save to data db
+            # instance = form.save(commit=False)
+            # instance.author = request.user
+            # instance.article = request.POST.get("article_id")
+            # instance.save()
+            # return redirect('articles:list')
     # else:
     #     form = forms.CreateArticle()
     article = Article.objects.get(id=request.POST.get("article_id"))

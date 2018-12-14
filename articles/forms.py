@@ -10,4 +10,4 @@ class CreateArticle(forms.ModelForm):
 class PostComment(forms.ModelForm):
 	class Meta:
 		model = models.Comment
-		fields = [ 'comment', 'article' ]
+		fields = [ 'comment' ]

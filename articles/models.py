@@ -14,6 +14,9 @@ class Article(models.Model):
     key_words = models.CharField(max_length=100)
     author = models.ForeignKey(User, default=None, on_delete=models.CASCADE, related_name='user')
     up_vote = models.PositiveSmallIntegerField(null=True)
+    allow_comments = models.PositiveSmallIntegerField(default=1)
+    visibility = models.CharField(max_length=20, default='public')
+    likes = models.PositiveSmallIntegerField(null=True)
     # add in thumbnail
 
     def __str__(self):
@@ -32,6 +35,8 @@ class Comment(models.Model):
     date = models.DateTimeField(auto_now_add = True)
     up_vote = models.PositiveSmallIntegerField(null=True)
     down_vote = models.PositiveSmallIntegerField(null=True)
+    approved = models.PositiveSmallIntegerField(default=1)
+    approved_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.comment
@@ -44,8 +49,11 @@ class ReplyOnComment(models.Model):
     date = models.DateTimeField(auto_now_add = True)
     author  = models.ForeignKey(User, default=None, on_delete=models.CASCADE)
     article = models.ForeignKey(Article, default=None, on_delete=models.CASCADE)
+    comment = models.ForeignKey(Comment, default=None, on_delete=models.CASCADE)
     up_vote = models.PositiveSmallIntegerField(null=True)
     down_vote = models.PositiveSmallIntegerField(null=True)
+    approved = models.PositiveSmallIntegerField(default=1)
+    approved_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.reply
