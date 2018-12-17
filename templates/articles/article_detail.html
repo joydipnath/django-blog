@@ -81,14 +81,12 @@
  
               {% for comment in comments %}
                 
-              
-
               <div class="comment mdl-color-text--grey-700">
                 <header class="comment__header">
                   <img src="{% static 'images/user.jpg' %}" class="comment__avatar">
                   <div class="comment__author">
                     <strong>{{comment.author.first_name }}</strong>
-                    <span>{{comment.date }}</span>
+                    <span>{{comment.date}}</span>
                   </div>
                 </header>
                 <div class="comment__text">
@@ -104,7 +102,22 @@
                   <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
                     <i class="material-icons" role="presentation">share</i><span class="visuallyhidden">share comment</span>
                   </button>
-                </nav>
+                <!-- </nav>
+                <div class="comment__answers">
+                  <div class="comment">
+                    <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments">
+                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <textarea rows=1 class="mdl-textfield__input" id="comment" name="comment"></textarea>
+                        <label for="comment" class="mdl-textfield__label">Join the discussion</label>
+                      </div>
+                      <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" type="submit">
+                        <i class="material-icons" role="presentation">check</i><span class="visuallyhidden">add comment</span>
+                      </button>
+                    </div>
+                  </div>
+                </div> -->
+
+                
                 <!-- <div class="comment__answers">
                   <div class="comment">
                     <header class="comment__header">
