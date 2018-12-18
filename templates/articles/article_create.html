@@ -10,9 +10,28 @@ Create Your Article
 <!--<button type="submit">create</button>-->
 <!--</form>-->
 <!-- <main class="mdl-layout__content "> -->
+
+<form class="site-form create_article_form" id="create_article_form" role="form" name="create_article_form" method="post" action="{% url 'articles:create' %}" enctype="multipart/form-data">
+{% csrf_token %}
+
    <div class="mdl-grid create_article_page">
       <div class="mdl-cell mdl-cell--1-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
       <div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet mdl-cell--12-col-phone">
+
+          {% if form.errors %}
+              {% for field in form %}
+                  {% for error in field.errors %}
+                      <div class="alert alert-danger">
+                          <strong>{{ error|escape }}</strong>
+                      </div>
+                  {% endfor %}
+              {% endfor %}
+              {% for error in form.non_field_errors %}
+                  <div class="alert alert-danger">
+                      <strong>{{ error|escape }}</strong>
+                  </div>
+              {% endfor %}
+          {% endif %}
 
           <div class="demo-card-event mdl-card mdl-shadow--2dp">
               <!--<div class="mdl-card">-->
@@ -21,8 +40,7 @@ Create Your Article
               </div>
          <!--<div class="mdl-cell mdl-cell&#45;&#45;4-col mdl-cell&#45;&#45;6-col-tablet">4 (6 tablet)</div>-->
          <!--<div class="mdl-cell mdl-cell&#45;&#45;2-col mdl-cell&#45;&#45;4-col-phone">2 (4 phone)</div>-->
-         <form class="site-form create_article_form" id="create_article_form" role="form" name="create_article_form" method="post" action="{% url 'articles:create' %}" enctype="multipart/form-data">
-            {% csrf_token %}
+         
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                <input class="mdl-textfield__input" type="text" name="title" required="" id="id_title" maxlength="100">
                <label class="mdl-textfield__label" for="id_title">Title...</label>
@@ -53,7 +71,7 @@ Create Your Article
                Create
                </button>
             </div>
-         </form>
+         
           </div>
       </div>
       <div class="mdl-cell mdl-cell--3-col mdl-cell--8-col-tablet mdl-cell--12-col-phone">
@@ -64,11 +82,11 @@ Create Your Article
             </div>
             <div class="mdl-card__supporting-text">
               <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
-                <input type="radio" id="option-1" class="mdl-radio__button" name="options" value="1" checked>
+                <input type="radio" id="option-1" class="mdl-radio__button" name="visibility" value="public" checked required>
                 <span class="mdl-radio__label">Public</span>
               </label>
               <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
-                <input type="radio" id="option-2" class="mdl-radio__button" name="options" value="2">
+                <input type="radio" id="option-2" class="mdl-radio__button" name="visibility" value="private">
                 <span class="mdl-radio__label">Private</span>
               </label>
             </div>
@@ -103,8 +121,8 @@ Create Your Article
                   Comments
                 </span>
                 <span class="mdl-list__item-secondary-action">
-                  <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-1">
-                    <input type="checkbox" id="list-switch-1" class="mdl-switch__input" checked />
+                  <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="allow_comments">
+                    <input type="checkbox" id="allow_comments" class="mdl-switch__input" name="allow_comments" checked/>
                   </label>
                 </span>
               </li>
@@ -112,7 +130,10 @@ Create Your Article
 
           </div>
       </div>
+
    </div>
+  </form>
+
 <!-- </main> -->
 {% endblock %}
 {% block before_body %}
