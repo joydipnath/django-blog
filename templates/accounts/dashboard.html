@@ -69,7 +69,22 @@
 						  	<tr>
 						      <td class="mdl-data-table__cell--non-numeric"><a href="{% url 'articles:detail' slug=article.slug %}" target="_blank">{{article.title}}</a></td>
 						      <td>{{article.slug}}</td>
-						      <td>{{article.date}}</td>
+						      <td>
+						      	{{article.date}}
+						      	
+					            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white pull-right" role="presentation" id="delete_tt_{{article.slug}}" >
+					                <i class="material-icons">delete</i>
+					                <div class="mdl-tooltip mdl-tooltip--right" for="delete_tt_{{article.slug}}">
+					                  delete
+					                </div>
+					            </button>
+					            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white pull-right" role="presentation" id="edit_tt_{{article.slug}}" >
+					                <i class="material-icons">create</i>
+					                <div class="mdl-tooltip mdl-tooltip--left" for="edit_tt_{{article.slug}}">
+					                  edit
+					                </div>
+					            </button>
+						      </td>
 						    </tr>
 		        		{% endfor %}
 					  </tbody>
@@ -79,22 +94,19 @@
 
 
 				<!-- view mmy profile -->
-				<!-- <div id="show_my_profile">
-					{{ user_form }}
+				<div id="show_my_profile" style="margin-top:20px;">
 
-					<div id="example-2">
-				  		`greet` is the name of a method defined below
-				  		<button v-on:click="greet">Greet</button>
+					
+					<div class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp" style="width: 100%;">
+
+						<!-- {{ user_form }}
+						{{ profile_form }} -->
 					</div>
-				</div> -->
+
+				</div>
 
 			</div>
         	<div class="mdl-cell--1-col"></div>
-
-        	<div id="app">
-				  {{ message }}
-				</div>
-        	</div>
 
         	<!-- {{ profile_form }} -->
 
@@ -104,5 +116,7 @@
 {% endblock %}
 
 {% block before_body %}
-<script src="{% static 'js/app.js' %}"></script>
+
+	<script src="{% static 'js/app.js' %}"></script>
+
 {% endblock %}

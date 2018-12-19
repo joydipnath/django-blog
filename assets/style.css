@@ -766,3 +766,8 @@ body .detail_article {
 .mdl-data-table td, .mdl-data-table th {
     text-align: left;
 }
+
+.pull-right {
+  float: right;
+  clear: left;
+}

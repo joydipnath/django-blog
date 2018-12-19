@@ -14,7 +14,7 @@ class Article(models.Model):
     key_words = models.CharField(max_length=100)
     author = models.ForeignKey(User, default=None, on_delete=models.CASCADE, related_name='user')
     up_vote = models.PositiveSmallIntegerField(null=True)
-    allow_comments = models.PositiveSmallIntegerField(blank=True, null=True)
+    allow_comments = models.PositiveSmallIntegerField(blank=True, null=True, default=0)
     visibility = models.CharField(max_length=20, blank=True)
     likes = models.PositiveSmallIntegerField(null=True)
     # add in thumbnail
