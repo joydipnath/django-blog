@@ -39,15 +39,21 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'articles',
     'accounts',
-    'social_django',
+    'social_django', #<-- social oAuth
 ]
 
 # for social login
 AUTHENTICATION_BACKENDS = (
- 'social_core.backends.open_id.OpenIdAuth',
- 'social_core.backends.google.GoogleOpenId',
- 'social_core.backends.google.GoogleOAuth2',
- 'django.contrib.auth.backends.ModelBackend',
+    'social_core.backends.open_id.OpenIdAuth',
+    'social_core.backends.google.GoogleOpenId',
+    'social_core.backends.google.GoogleOAuth2',
+
+    # 'social_core.backends.github.GithubOAuth2',
+    # 'social_core.backends.twitter.TwitterOAuth',
+    # 'social_core.backends.facebook.FacebookOAuth2',
+
+    'django.contrib.auth.backends.ModelBackend', # <-- It ensures the user will still able to login via Django auth Model backend.
+
 )
 
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
@@ -60,6 +66,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'social_django.middleware.SocialAuthExceptionMiddleware', #<-- social oAuth
 ]
 
 ROOT_URLCONF = 'blog.urls'
@@ -111,7 +119,8 @@ SOCIAL_AUTH_GOOGLE_PLUS_SCOPE = [
 'https://www.googleapis.com/auth/userinfo.profile'
 ]
 
-LOGIN_URL = '/account/login/'
+LOGIN_URL = 'login' # <-- where 'login' and 'home' are the names of URLs in urls.py
+LOGIN_REDIRECT_URL = 'home'
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='1048273200482-scqr4vm3j62vlhpo87j6s64radvnu9bm.apps.googleusercontent.com'  #Paste CLient Key
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'Qcp1BfFWokRGOimicxRQi0z3' #Paste Secret Key

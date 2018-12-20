@@ -23,11 +23,14 @@ from django.conf import settings
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^about/$', views.about),
-    url(r'^$', views.homepage),
+    url(r'^$', views.homepage, name="home"),
     url(r'^articles/', include('articles.urls')),
     url(r'^accounts/', include('accounts.urls')),
-    url(r'^accounts/', include('social_django.urls', namespace='social')),
-    url(r'^accounts/', include('django.contrib.auth.urls', namespace='auth')),
+
+    # url(r'^accounts/', include('social_django.urls', namespace='social')),
+    # url(r'^accounts/', include('django.contrib.auth.urls', namespace='auth')),
+
+    url(r'^oauth/', include('social_django.urls', namespace='social')),  # <--
 ]
 
 urlpatterns += staticfiles_urlpatterns()
