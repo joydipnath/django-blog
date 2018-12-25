@@ -48,7 +48,7 @@ AUTHENTICATION_BACKENDS = (
     'social_core.backends.google.GoogleOpenId',
     'social_core.backends.google.GoogleOAuth2',
 
-    # 'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.github.GithubOAuth2',
     # 'social_core.backends.twitter.TwitterOAuth',
     # 'social_core.backends.facebook.FacebookOAuth2',
 
@@ -122,8 +122,11 @@ SOCIAL_AUTH_GOOGLE_PLUS_SCOPE = [
 LOGIN_URL = 'login' # <-- where 'login' and 'home' are the names of URLs in urls.py
 LOGIN_REDIRECT_URL = 'home'
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='1048273200482-scqr4vm3j62vlhpo87j6s64radvnu9bm.apps.googleusercontent.com'  #Paste CLient Key
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'Qcp1BfFWokRGOimicxRQi0z3' #Paste Secret Key
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY       =   '1048273200482-scqr4vm3j62vlhpo87j6s64radvnu9bm.apps.googleusercontent.com'  #Paste CLient Key
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET    =   'Qcp1BfFWokRGOimicxRQi0z3' #Paste Secret Key
+
+SOCIAL_AUTH_GITHUB_KEY      = '06389a061b57598d04e4' #Paste Client ID
+SOCIAL_AUTH_GITHUB_SECRET   = '55e914fa46344201af0bf86140028100324197c0' #Paste Secret Key
 
 WSGI_APPLICATION = 'blog.wsgi.application'
 
@@ -177,7 +180,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/

@@ -90,12 +90,16 @@
                      <a href="#" class="login100-social-item bg1">
                      <i class="fa fa-facebook"></i>
                      </a>
-                     <a href="#" class="login100-social-item bg2">
+                     <!-- <a href="#" class="login100-social-item bg2">
                      <i class="fa fa-twitter"></i>
+                     </a> -->
+                     <a class="login100-social-item bg2" href="{% url 'social:begin' 'github' %}">
+                        <i class="fa fa-github"></i>
                      </a>
                      <a class="login100-social-item bg3" href="{% url 'social:begin' 'google-oauth2' %}?next=/">
                      <i class="fa fa-google"></i>
                      </a>
+                     
                   </div>
                </form>
             </div>
