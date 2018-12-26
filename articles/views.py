@@ -39,6 +39,19 @@ def article_create(request):
         form = forms.CreateArticle()
     return render(request, 'articles/article_create.html', {'form': form})
 
+
+@login_required(login_url="/accounts/login/")
+def article_edit(request, slug):
+    
+    article = Article.objects.get(slug=slug)
+
+    comments = Comment.objects.filter(article= article.id).select_related() 
+    # return HttpResponse(comment)
+    # [:1]
+    # return article.author_set.all()
+    # return HttpResponse(article.author_set.all())
+    return render(request, 'articles/article_detail.html', {'article': article, 'comments' : comments})
+
 def search_article(request):
     try:
         q = request.GET['search']
@@ -54,7 +67,6 @@ def search_article(request):
 
 @login_required(login_url="/accounts/login")
 def article_post_comments(request):
-
    
     if request.method == 'POST':
 

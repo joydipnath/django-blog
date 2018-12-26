@@ -72,18 +72,21 @@
 						      <td>
 						      	{{article.date}}
 						      	
+
 					            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white pull-right" role="presentation" id="delete_tt_{{article.slug}}" >
 					                <i class="material-icons">delete</i>
 					                <div class="mdl-tooltip mdl-tooltip--right" for="delete_tt_{{article.slug}}">
 					                  delete
 					                </div>
 					            </button>
-					            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white pull-right" role="presentation" id="edit_tt_{{article.slug}}" >
+					            <a href="{% url 'articles:edit' slug=article.slug %}" target="_blank">
+					            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white pull-right" role="presentation" id="edit_tt_{{article.slug}}"  >
 					                <i class="material-icons">create</i>
 					                <div class="mdl-tooltip mdl-tooltip--left" for="edit_tt_{{article.slug}}">
 					                  edit
 					                </div>
 					            </button>
+					            </a>
 						      </td>
 						    </tr>
 		        		{% endfor %}
