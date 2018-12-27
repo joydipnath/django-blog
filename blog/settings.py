@@ -68,6 +68,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
     'social_django.middleware.SocialAuthExceptionMiddleware', #<-- social oAuth
+    'articles.middleware.IsAuthorMiddleware',
 ]
 
 ROOT_URLCONF = 'blog.urls'
